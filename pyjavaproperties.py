@@ -45,12 +45,7 @@ class Properties(object):
         self.bspacere = re.compile(r'\\(?!\s$)')
 
     def __str__(self):
-        s='{'
-        for key,value in self._props.items():
-            s = ''.join((s,key,'=',value,', '))
-
-        s=''.join((s[:-2],'}'))
-        return s
+        return "{}".format(self._props)
 
     def __parse(self, lines):
         """ Parse a list of lines and create
@@ -245,6 +240,8 @@ class Properties(object):
             self.__parse(lines)
         except IOError, e:
             raise
+
+        return self
 
     def getProperty(self, key):
         """ Return a property for the given key """
